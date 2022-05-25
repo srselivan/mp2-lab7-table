@@ -12,7 +12,7 @@ public:
 
 	~TArrayTable() { delete[] arr; }
 
-	bool IsFull() { return DataCount == size; }
+	bool IsFull() const { return DataCount == size; }
 
 	void Reset() { curr = 0; }
 

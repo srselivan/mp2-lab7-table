@@ -13,11 +13,11 @@ public:
 
 	virtual bool IsFull() const = 0;
 
-	virtual bool Find(TKey key) const = 0;
+	virtual bool Find(TKey key) = 0;
 
-	virtual bool Insert(TRecord rec) const = 0;
+	virtual bool Insert(TRecord rec) = 0;
 
-	virtual bool Delete(TKey key) const = 0;
+	virtual bool Delete(TKey key) = 0;
 
 	virtual void Reset() = 0;
 
@@ -25,7 +25,7 @@ public:
 
 	virtual void GoNext() = 0;
 
-	virtual TRecord GetCurrRec() const = 0;
+	virtual TRecord GetCurrRec() = 0;
 
 	int GetDataCount() const { return DataCount; }
 
