@@ -9,12 +9,24 @@ struct TRecord {
 	TKey key;
 	TValue value;
 
+	TRecord() {}
+
+	TRecord(TKey key, TValue value) : key(key), value(value) {}
+
 	bool operator > (const TRecord& rec) const {
 		return key > rec.key;
 	}
 
 	bool operator < (const TRecord& rec) const {
 		return key < rec.key;
+	}
+
+	bool operator == (const TRecord& rec) const {
+		return key == rec.key;
+	}
+	
+	bool operator != (const TRecord& rec) const {
+		return key != rec.key;
 	}
 
 	friend std::ostream& operator<< (std::ostream& os, const TRecord rec) {

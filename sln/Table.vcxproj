@@ -140,7 +140,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\headers\Table.h" />
+    <ClInclude Include="..\headers\TArrayHash.h" />
     <ClInclude Include="..\headers\TArrayTable.h" />
+    <ClInclude Include="..\headers\THashTable.h" />
     <ClInclude Include="..\headers\TRecord.h" />
     <ClInclude Include="..\headers\TScanTable.h" />
     <ClInclude Include="..\headers\TSortTable.h" />
