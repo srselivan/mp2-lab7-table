@@ -9,7 +9,7 @@ class TArrayHash : public THashTable {
 	int curr;
 
 public:
-	TArrayHash(int size = 100, int step = 7) : size(size), step(step) {
+	TArrayHash(int size = 10, int step = 7) : size(size), step(step) {
 		arr = new TRecord[size];
 
 		free.key = -1;
@@ -22,6 +22,19 @@ public:
 
 	~TArrayHash() { delete [] arr; }
 
+	bool IsFull() const {
+		for (int i = 0; i < size; i++) {
+			if (arr[i] == free || arr[i] == del) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	TRecord GetCurrRec() {
+		return arr[curr];
+	}
+
 	void Reset() { 
 		for (curr = 0; curr < size; curr++) {
 			if (arr[curr] != free && arr[curr] != del) return;
@@ -31,7 +44,7 @@ public:
 	bool IsEnd() { return curr == size - 1; }
 
 	void GoNext() { 
-		for (curr++ ; curr < size; curr++) {
+		for (curr++ ; curr < size - 1; curr++) {
 			if (arr[curr] != free && arr[curr] != del) return;
 		}
 	}
@@ -53,8 +66,8 @@ public:
 			else if (arr[i] == del && delPosition == -1) {
 				delPosition = n;
 				curr = n;
-				n = (n + step) % size;
 			}
+			n = (n + step) % size;
 		}
 
 		if (delPosition != -1) {
@@ -64,7 +77,7 @@ public:
 	}
 
 	bool Insert(TRecord rec) {
-		if (IsFull) return false;
+		if (IsFull()) return false;
 		if (Find(rec.key)) return false;
 
 		arr[curr] = rec;
