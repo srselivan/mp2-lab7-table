@@ -143,9 +143,13 @@
     <ClInclude Include="..\headers\TArrayHash.h" />
     <ClInclude Include="..\headers\TArrayTable.h" />
     <ClInclude Include="..\headers\THashTable.h" />
+    <ClInclude Include="..\headers\TList.h" />
+    <ClInclude Include="..\headers\TListHash.h" />
+    <ClInclude Include="..\headers\TNode.h" />
     <ClInclude Include="..\headers\TRecord.h" />
     <ClInclude Include="..\headers\TScanTable.h" />
     <ClInclude Include="..\headers\TSortTable.h" />
+    <ClInclude Include="..\headers\TTreeTable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\main.cpp" />
