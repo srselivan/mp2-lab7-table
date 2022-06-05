@@ -18,7 +18,7 @@ class TBalTree : public TTreeTable {
 			TNode* pL = p->pLeft;
 
 			if (pL->balance == -1) {
-				p->pLeft = pL->pLeft;
+				p->pLeft = pL->pRight;
 				pL->pRight = p;
 				p->balance = 0;
 				pL->balance = 0;
@@ -35,12 +35,12 @@ class TBalTree : public TTreeTable {
 
 				if (pR->balance == -1) {
 					pR->balance == 0;
-					pL->balance == 0;
+					pL->balance == 1;
 					p->balance == 1;
 				}
 				else {
-					pR->balance == 0;
-					pL->balance == -1;
+					pR->balance == 1;
+					pL->balance == 0;
 					p->balance == 0;
 				}
 
@@ -67,7 +67,7 @@ class TBalTree : public TTreeTable {
 		else {
 			TNode* pR = p->pRight;
 
-			if (pR->balance == -1) {
+			if (pR->balance == 1) {
 				p->pRight = pR->pLeft;
 				pR->pLeft = p;
 				p->balance = 0;
@@ -75,7 +75,7 @@ class TBalTree : public TTreeTable {
 				result = 0;
 				p = pR;
 			}
-			else if (pR->balance == 1) {
+			else if (pR->balance == -1) {
 				TNode* pL = pR->pLeft;
 
 				pR->pLeft = pL->pRight;
@@ -102,11 +102,154 @@ class TBalTree : public TTreeTable {
 		return result;
 	}
 
-	int LeftTreeBalDel(TNode*& p);
+	int LeftTreeBalDel(TNode*& p) {
+		Eff++;
+		int result = 0;
 
-	int RightTreeBalDel(TNode*& p);
+		if (p->balance == 1)
+		{
+			p->balance = 0;
+			result = -1;
+		}
+		else if (p->balance == 0)
+		{
+			p->balance = -1;
+			result = 0;
+		}
+		else {
+			TNode* pl = p->pLeft;
+
+			if (pl->balance == -1)
+			{
+				p->pLeft = pl->pRight;
+				pl->pRight = p;
+
+				pl->balance = 0;
+				p->balance = 0;
+
+				p = pl;
+				result = -1;
+			}
+			else if (pl->balance == 1)
+			{
+				TNode* plpr = pl->pRight;
+
+				pl->pRight = plpr->pLeft;
+				plpr->pLeft = pl;
+				p->pLeft = plpr->pRight;
+				plpr->pRight = p;
+				if (plpr->balance == -1)
+				{
+					p->balance = 1;
+				}
+				else
+				{
+					p->balance = 0;
+				}
+				if (plpr->balance == 1)
+				{
+					pl->balance = -1;
+				}
+				else
+				{
+					pl->balance = 0;
+				}
+				p = plpr;
+				p->balance = 0;
+				result = -1;
+			}
+			else
+			{
+				TNode* pp = p;
+				TNode* plpl = pl->pLeft;
+				TNode* plpr = pl->pRight;
+
+				p = pl;
+				p->pLeft = plpl;
+				p->pRight = pp;
+				pp->pLeft = plpr;
+				pl->balance = 1;
+				return 0;
+			}
+		}
+		return result;
+	}
+
+	int RightTreeBalDel(TNode*& p) {
+		Eff++;
+		int result = 0;
+
+		if (p->balance == -1)
+		{
+			p->balance = 0;
+			result = -1;
+		}
+		else if (p->balance == 0)
+		{
+			p->balance = 1;
+			result = 0;
+		}
+		else
+		{
+			TNode* pr = p->pRight;
+			if (pr->balance == 1)
+			{
+				p->pRight = pr->pLeft;
+				pr->pLeft = p;
+
+				pr->balance = 0;
+				p->balance = 0;
+
+				p = pr;
+				result = -1;
+			}
+			else if (pr->balance == -1)
+			{
+				TNode* prpl = pr->pLeft;
+
+				pr->pLeft = prpl->pRight;
+				prpl->pRight = pr;
+				p->pRight = prpl->pLeft;
+				prpl->pLeft = p;
+				if (prpl->balance == 1)
+				{
+					p->balance = -1;
+				}
+				else
+				{
+					p->balance = 0;
+				}
+				if (prpl->balance == -1)
+				{
+					pr->balance = 1;
+				}
+				else
+				{
+					pr->balance = 0;
+				}
+				p = prpl;
+				p->balance = 0;
+				result = -1;
+			}
+			else
+			{
+				TNode* pp = p;
+				TNode* prpl = pr->pLeft;
+				TNode* prpr = pr->pRight;
+
+				p = pr;
+				p->pLeft = pp;
+				p->pRight = prpr;
+				pp->pRight = prpl;
+				pr->balance = -1;
+				return 0;
+			}
+		}
+		return result;
+	}
 
 	int InsBalTree(TNode*& p, TRecord rec) {
+		Eff++;
 		int result = 0;
 
 		if (p == NULL) {
@@ -133,8 +276,8 @@ class TBalTree : public TTreeTable {
 	}
 
 	int DelBalTree(TNode*& p, TKey key) {
-		int result = 0;
 		Eff++;
+		int result = 0;
 
 		if (p == NULL) {
 			return result;
@@ -194,7 +337,6 @@ class TBalTree : public TTreeTable {
 		while (p->pRight != NULL) {
 			p = p->pRight;
 		}
-
 		return p;
 	}
 

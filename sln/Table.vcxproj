@@ -142,6 +142,7 @@
     <ClInclude Include="..\headers\Table.h" />
     <ClInclude Include="..\headers\TArrayHash.h" />
     <ClInclude Include="..\headers\TArrayTable.h" />
+    <ClInclude Include="..\headers\TBalTree.h" />
     <ClInclude Include="..\headers\THashTable.h" />
     <ClInclude Include="..\headers\TList.h" />
     <ClInclude Include="..\headers\TListHash.h" />

@@ -3,6 +3,7 @@
 #include "../headers/THashTable.h"
 #include "../headers/TArrayHash.h"
 #include "../headers/TTreeTable.h"
+#include "../headers/TBalTree.h"
 
 void main() {
 	/*TSortTable t;
@@ -44,7 +45,7 @@ void main() {
 
 	std::cout << t;*/
 
-	TTreeTable t;
+	/*TTreeTable t;
 	TRecord insertRec;
 
 	for (int i = 0; i < 5; i++) {
@@ -56,6 +57,28 @@ void main() {
 	t.Print(std::cout);
 
 	t.Delete(2);
+
+	t.Print(std::cout);*/\
+
+	TBalTree t;
+	TRecord insertRec;
+
+	for (int i = 5; i > 0; i--) {
+		insertRec.key = i;
+		insertRec.value = "value" + i;
+		t.Insert(insertRec);
+	}
+
+	t.Print(std::cout);
+	std::cout << "\n\n";
+
+	t.Delete(2);
+
+	t.Print(std::cout);
+
+	std::cout << "\n\n";
+
+	t.Delete(4);
 
 	t.Print(std::cout);
 
