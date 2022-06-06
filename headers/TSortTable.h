@@ -86,7 +86,7 @@ public:
 		if (IsEmpty()) return false;
 		if (!Find(key)) return false;
 
-		for (int i = curr; i < DataCount; i++) {
+		for (int i = curr; i < DataCount - 1; i++) {
 			arr[i] = arr[i + 1];
 			Eff++;
 		}

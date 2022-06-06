@@ -34,6 +34,7 @@ public:
 			else {
 				pCurr = pCurr->pRight;
 			}
+			Eff++;
 		}
 
 		pCurr = pPrev;
@@ -58,6 +59,7 @@ public:
 		}
 
 		DataCount++;
+		Eff++;
 		return true;
 	}
 
@@ -74,7 +76,7 @@ public:
 					pPrev->pRight = pCurr->pLeft;
 				}
 				else {
-					pPrev->pLeft = pCurr->pRight;
+					pPrev->pLeft = pCurr->pLeft;
 				}
 			}
 		}
@@ -84,10 +86,10 @@ public:
 			}
 			else {
 				if (pCurr->rec.key > pPrev->rec.key) {
-					pPrev->pLeft = pCurr->pRight;
+					pPrev->pRight = pCurr->pRight;
 				}
 				else {
-					pPrev->pRight = pCurr->pLeft;
+					pPrev->pLeft = pCurr->pLeft;
 				}
 			}
 		}

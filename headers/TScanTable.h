@@ -33,7 +33,7 @@ public:
 		if (!Find(key)) return false;
 
 		arr[curr] = arr[DataCount - 1];
-		DataCount++;
+		DataCount--;
 		Eff++;
 		return true;
 	}

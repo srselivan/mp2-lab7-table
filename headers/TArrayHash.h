@@ -41,10 +41,10 @@ public:
 		}
 	}
 
-	bool IsEnd() { return curr == size - 1; }
+	bool IsEnd() { return curr == size; }
 
 	void GoNext() { 
-		for (curr++ ; curr < size - 1; curr++) {
+		for (curr++ ; curr < size; curr++) {
 			if (arr[curr] != free && arr[curr] != del) return;
 		}
 	}
@@ -68,6 +68,7 @@ public:
 				curr = n;
 			}
 			n = (n + step) % size;
+			Eff++;
 		}
 
 		if (delPosition != -1) {
@@ -90,14 +91,9 @@ public:
 		if (IsEmpty()) return false;
 		if (!Find(key)) return false;
 
-		for (Reset(); !IsEnd(); GoNext()){
-			if (arr[curr].key == key) {
-				arr[curr] = del;
-			}
-			Eff++;
-		}
-
+		arr[curr] = del;
 		DataCount--;
+		Eff++;
 		return true;
 	}
 
