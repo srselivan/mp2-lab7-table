@@ -63,7 +63,7 @@ public:
 				curr = n;
 				return true;
 			}
-			else if (arr[i] == del && delPosition == -1) {
+			else if (arr[n] == del && delPosition == -1) {
 				delPosition = n;
 				curr = n;
 			}
